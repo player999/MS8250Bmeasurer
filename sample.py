@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3 
 
 import ms8250b
 import time
@@ -14,7 +14,10 @@ def run():
 		time.sleep(1)
 		v = meter.getValue()
 		if "value" in v.keys():
-			print("Value: %f %s" % (v["value"], v["type"]))
+			if isinstance(v["value"], float):
+				print("Value: %f %s" % (v["value"], v["type"]))
+			else:
+				print("Value: %s %s" % (v["value"], v["type"]))
 
 if __name__ == "__main__":
 	run()
